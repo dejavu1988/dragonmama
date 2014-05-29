@@ -24,3 +24,5 @@ feedback of music selection, sound setting, and mix
 indication.
 
 User Study: [questionnaire](https://docs.google.com/forms/d/1-py5HNrSw_4GpVYpmu6zPVSF9zuEGODUZNJirohb-P8/viewform)
+
+Project summary: [report](https://github.com/dejavu1988/dragonmama/blob/master/report/intsys_report.pdf)
