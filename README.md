@@ -1,7 +1,7 @@
 DragonMama
 ==========
 
-DragonMama: An Arduino & Node.js based gesture-control application,	using Arduino programming board and flex & pressure sensors to detect gesture patterns over human fingers, and a jQuery-based frontend user interface.
+DragonMama: An [Arduino](http://www.arduino.cc/) & [Noduino.js](https://semu.github.io/noduino/) based gesture-control application,	using Arduino programming board and flex & pressure sensors to detect gesture patterns over human fingers, and a jQuery-based frontend user interface.
 
 DragonMama is 
 designed for DJs or music fans to control and mix their
