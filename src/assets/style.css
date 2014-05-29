@@ -1,0 +1,37 @@
+body {
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	font-size: 70%;
+}
+div#set{  
+position:relative;
+height: 500px;
+background:url(sensors.jpg);
+background-size:100% 100%;
+-moz-background-size:100% 100%; /* 老版本的 Firefox */
+background-repeat:no-repeat;
+padding: 20px;
+}  
+div#set1{  
+position:absolute;  
+top:50px;  
+left:300px;  
+width:150px;  
+}  
+div#set2{  
+position:absolute;  
+top:150px;  
+left:400px;  
+width:150px;  
+} 
+div#set3{  
+position:absolute;
+top:90px;  
+left:850px;  
+width:150px;  
+}
+div#set4{  
+position:absolute;
+top:300px;  
+left:850px;  
+width:150px;  
+}

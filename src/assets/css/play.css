@@ -1,0 +1,43 @@
+body {
+	background:black;
+	//background-image:url(../images/thefuture.gif);
+	}
+	
+.body_div {
+    margin:auto;
+    width:1024px;
+    height:768px;
+    font-family: sans-serif,arial;
+	//background-image:url(../images/doc_back/djmax2.jpg);
+	background-image:url(../images/doc_back/djmax3.jpg);
+    background-repeat:no-repeat;
+    //background:url(images/bg-spot.png) repeat-x;
+    background-position:center top; 
+    font-size:normal;
+}
+
+.table_content {
+    width:1024px;
+}
+
+.h2 {
+    font-family: sans-serif,arial;
+    color:white;
+    font-size:30px;
+}
+
+tr.header {
+    height:50px;
+    #background:#FAFAFA;
+}
+
+td.buttons {
+    width:224px;
+    #background:#FAFAFA;
+}
+
+tr.footer {
+    height:130px;
+    #background-image:url(../images/doc_back/djmax3.jpg);
+}
+

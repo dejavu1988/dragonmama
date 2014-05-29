@@ -1,0 +1,68 @@
+<html>
+<head>
+<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+<script>
+/*var audio0 = document.createElement("audio");
+
+var audio1 = document.createElement("audio");
+
+var audio2 = document.createElement("audio");
+
+var audio3 = document.createElement("audio");
+
+function aPlay0() {
+audio0.src = "./de.mp3";
+	audio0.play();
+}
+function aPlay1() {
+audio1.src = "./dong.mp3";
+	audio1.play();
+}
+function aPlay2() {
+audio2.src = "./de_P.mp3";
+	audio2.play();
+}
+function aPlay3() {
+audio3.src = "./dong_P.mp3";
+	audio3.play();
+}*/
+
+function AddNote(name) {
+var audio = document.createElement("audio");
+audio.src = "./" + name + ".mp3";
+audio.autoplay = true;
+}
+
+
+  var socket = io.connect(null);
+  socket.on('message', function (data) {
+    message(data);
+	if(data == "sensor0")
+	{
+      AddNote("de");
+		}
+	if(data == "sensor1")
+	{ 
+      AddNote("dong");
+		}
+	if(data == "sensor2")
+	{ 
+       AddNote("de_P");
+		}
+	if(data == "sensor3")
+	{ 
+        AddNote("dong_P");
+		}
+  });
+
+    function message(data) {
+  document.getElementById('message0').innerHTML = "Server says: " + data;
+    }
+
+</script>
+ <div><p id="message0"></p></div> 
+ <div><p id="message1"></p></div> 
+</body>
+</html>

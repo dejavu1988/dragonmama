@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+
+<!-- Website Design By: www.happyworm.com -->
+<title>Magic Music Mixer Glove  @DragonMama</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="skin/pink.flag/jplayer.pink.flag.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="js/jplayer.playlist.min.js"></script>
+
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" href="http://bootswatch.com/spacelab/bootstrap.min.css" />
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="style.css" /> 
+
+<link rel="stylesheet" type="text/css" href="css/buttons.css"/>
+<script type="text/javascript" src="js/play.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+
+var sensor_0;
+var sensor_1;
+var sensor_2;
+var sensor_3;
+var isPlayMode = false;
+
+
+
+$(function() {
+
+    
+    $( "#submit" ).click(function () {
+    alert("modify submitted");
+    var Obj1 = document.getElementById("select1");
+    var sel1 = Obj1.options[Obj1.selectedIndex].value;
+    var Obj2 = document.getElementById("select2");
+    var sel2 = Obj2.options[Obj2.selectedIndex].value;
+    var Obj3 = document.getElementById("select3");
+    var sel3 = Obj3.options[Obj3.selectedIndex].value;
+    var Obj4 = document.getElementById("select4");
+    var sel4 = Obj4.options[Obj4.selectedIndex].value;
+    
+    sensor_0 = sel4;
+    sensor_1 = sel3;
+    sensor_2 = sel2;
+    sensor_3 = sel1;   
+    
+	var sen1 = document.getElementById("sensor1");
+	sen1.innerHTML = sel1;
+	var sen2 = document.getElementById("sensor2");
+	sen2.innerHTML = sel2;
+	var sen3 = document.getElementById("sensor3");
+	sen3.innerHTML = sel3;
+	var sen4 = document.getElementById("sensor4");
+	sen4.innerHTML = sel4;
+
+});
+    
+});
+
+function AddNote(name) {
+var audio = document.createElement("audio");
+audio.src = "./audio/" + name + ".mp3";
+audio.autoplay = true;
+}
+
+function set1_onChanged(s) {
+	AddNote(s);
+}
+
+function set2_onChanged(s) {
+	AddNote(s);
+}
+
+function set3_onChanged(s) {
+	AddNote(s);
+}
+
+function set4_onChanged(s) {
+	AddNote(s);
+}
+
+//<![CDATA[
+$(document).ready(function(){
+
+	var myPlaylist = new jPlayerPlaylist({
+		jPlayer: "#jquery_jplayer_N",
+		cssSelectorAncestor: "#jp_container_N"
+	}, [
+		{
+				title:"Poker Face",
+				artist:"LadyGaga",
+				ogv:"Poker.Face.ogv",
+				poster:"Poker.Face.jpg"
+		},
+		{
+				title:"Bad Romance",
+				artist:"LadyGaga",
+				ogv:"Bad.Romance.ogv",
+				poster:"Bad.Romance.jpg"
+		},
+	], {
+		playlistOptions: {
+			enableRemoveControls: true
+		},
+		swfPath: "js",
+		supplied: "webmv, ogv, m4v, oga, mp3"
+	});
+
+	// Click handlers for jPlayerPlaylist method demo
+
+
+	// Video mix playlist
+
+	$("#playlist-setPlaylist-video-mix").click(function() {
+		myPlaylist.setPlaylist([
+			{
+				title:"Bad Romance",
+				artist:"LadyGaga",
+				ogv:"Bad.Romance.ogv",
+				poster:"Bad.Romance.jpg"
+			},
+			{
+				title:"Poker Face",
+				artist:"LadyGaga",
+				ogv:"Poker.Face.ogv",
+				poster:"Poker.Face.jpg"
+			}
+		]);
+	});
+
+
+	// Videos
+
+	$("#playlist-add-Bad-Romance").click(function() {
+		myPlaylist.add({
+			title:"Bad.Romance",
+			artist:"Ladygaga",
+			ogv:"Bad.Romance.ogv",
+			poster:"Bad.Romance.jpg"
+		});
+	});
+
+	$("#playlist-add-Poker-Face").click(function() {
+		myPlaylist.add({
+			title:"Poker Face",
+			artist:"Ladygaga",
+			ogv: "Poker.Face.ogv",
+			poster: "Poker.Face.jpg"
+		});
+	});
+
+	// The remove commands
+
+	$("#playlist-remove").click(function() {
+		myPlaylist.remove();
+	});
+
+	$("#playlist-remove--2").click(function() {
+		myPlaylist.remove(-2);
+	});
+	$("#playlist-remove--1").click(function() {
+		myPlaylist.remove(-1);
+	});
+	$("#playlist-remove-0").click(function() {
+		myPlaylist.remove(0);
+	});
+	$("#playlist-remove-1").click(function() {
+		myPlaylist.remove(1);
+	});
+	$("#playlist-remove-2").click(function() {
+		myPlaylist.remove(2);
+	});
+
+	// The shuffle commands
+
+	$("#playlist-shuffle").click(function() {
+		myPlaylist.shuffle();
+	});
+
+	$("#playlist-shuffle-false").click(function() {
+		myPlaylist.shuffle(false);
+	});
+	$("#playlist-shuffle-true").click(function() {
+		myPlaylist.shuffle(true);
+	});
+
+	// The select commands
+
+	$("#playlist-select--2").click(function() {
+		myPlaylist.select(-2);
+	});
+	$("#playlist-select--1").click(function() {
+		myPlaylist.select(-1);
+	});
+	$("#playlist-select-0").click(function() {
+		myPlaylist.select(0);
+	});
+	$("#playlist-select-1").click(function() {
+		myPlaylist.select(1);
+	});
+	$("#playlist-select-2").click(function() {
+		myPlaylist.select(2);
+	});
+
+	// The next/previous commands
+
+	$("#playlist-next").click(function() {
+		myPlaylist.next();
+		//myPlaylist.pause();
+		myPlaylist.jp-stop();
+	});
+	$("#playlist-previous").click(function() {
+		myPlaylist.previous();
+		//myPlaylist.pause();
+		myPlaylist.jp-stop();
+	});
+	
+	$("#fake-playlist-next").click(function() {
+		myPlaylist.next();
+	});
+	
+	$("#fake-playlist-previous").click(function() {
+		myPlaylist.previous();
+	});
+
+	// The play commands
+
+	$("#playlist-play").click(function() {
+		myPlaylist.play();
+	});
+
+	$("#playlist-play--2").click(function() {
+		myPlaylist.play(-2);
+	});
+	$("#playlist-play--1").click(function() {
+		myPlaylist.play(-1);
+	});
+	$("#playlist-play-0").click(function() {
+		myPlaylist.play(0);
+	});
+	$("#playlist-play-1").click(function() {
+		myPlaylist.play(1);
+	});
+	$("#playlist-play-2").click(function() {
+		myPlaylist.play(2);
+	});
+	
+	// The pause command
+
+	$("#playlist-pause").click(function() {
+		myPlaylist.pause();
+	});
+
+	// Stop command
+	$("#end1").click(function() {
+		myPlaylist.jp-stop();
+	});
+	$("#playlist-stop").click(function() {
+		myPlaylist.jp-stop();
+	});
+	$("#gameStart").click(function() {
+		//myPlaylist.jp-stop();	
+		myPlaylist.play();
+	});
+	$("#settingStart").click(function() {
+		myPlaylist.jp-stop();
+	});
+	// Changing the playlist options
+
+	// Option: autoPlay
+
+	$("#playlist-option-autoPlay-true").click(function() {
+		myPlaylist.option("autoPlay", true);
+	});
+	$("#playlist-option-autoPlay-false").click(function() {
+		myPlaylist.option("autoPlay", false);
+	});
+
+	// Option: enableRemoveControls
+
+	$("#playlist-option-enableRemoveControls-true").click(function() {
+		myPlaylist.option("enableRemoveControls", true);
+	});
+	$("#playlist-option-enableRemoveControls-false").click(function() {
+		myPlaylist.option("enableRemoveControls", false);
+	});
+
+	// Option: displayTime
+
+	$("#playlist-option-displayTime-0").click(function() {
+		myPlaylist.option("displayTime", 0);
+	});
+	$("#playlist-option-displayTime-fast").click(function() {
+		myPlaylist.option("displayTime", "fast");
+	});
+	$("#playlist-option-displayTime-slow").click(function() {
+		myPlaylist.option("displayTime", "slow");
+	});
+	$("#playlist-option-displayTime-2000").click(function() {
+		myPlaylist.option("displayTime", 2000);
+	});
+
+	// Option: addTime
+
+	$("#playlist-option-addTime-0").click(function() {
+		myPlaylist.option("addTime", 0);
+	});
+	$("#playlist-option-addTime-fast").click(function() {
+		myPlaylist.option("addTime", "fast");
+	});
+	$("#playlist-option-addTime-slow").click(function() {
+		myPlaylist.option("addTime", "slow");
+	});
+	$("#playlist-option-addTime-2000").click(function() {
+		myPlaylist.option("addTime", 2000);
+	});
+
+	// Option: removeTime
+
+	$("#playlist-option-removeTime-0").click(function() {
+		myPlaylist.option("removeTime", 0);
+	});
+	$("#playlist-option-removeTime-fast").click(function() {
+		myPlaylist.option("removeTime", "fast");
+	});
+	$("#playlist-option-removeTime-slow").click(function() {
+		myPlaylist.option("removeTime", "slow");
+	});
+	$("#playlist-option-removeTime-2000").click(function() {
+		myPlaylist.option("removeTime", 2000);
+	});
+
+	// Option: shuffleTime
+
+	$("#playlist-option-shuffleTime-0").click(function() {
+		myPlaylist.option("shuffleTime", 0);
+	});
+	$("#playlist-option-shuffleTime-fast").click(function() {
+		myPlaylist.option("shuffleTime", "fast");
+	});
+	$("#playlist-option-shuffleTime-slow").click(function() {
+		myPlaylist.option("shuffleTime", "slow");
+	});
+	$("#playlist-option-shuffleTime-2000").click(function() {
+		myPlaylist.option("shuffleTime", 2000);
+	});
+
+	// Equivalent commands
+
+	$("#playlist-equivalent-1-a").click(function() {
+		myPlaylist.add({
+			title:"Your Face",
+			artist:"The Stark Palace",
+			mp3:"http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/TSP-05-Your_face.ogg",
+			poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+		}, true);
+	});
+
+	$("#playlist-equivalent-1-b").click(function() {
+		myPlaylist.add({
+			title:"Your Face",
+			artist:"The Stark Palace",
+			mp3:"http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/TSP-05-Your_face.ogg",
+			poster: "http://www.jplayer.org/audio/poster/The_Stark_Palace_640x360.png"
+		});
+		myPlaylist.play(-1);
+	});
+
+	// AVOID COMMANDS
+
+	$("#playlist-avoid-1").click(function() {
+		myPlaylist.remove(2); // Removes the 3rd item
+		myPlaylist.remove(3); // Ignored unless removeTime=0: Where it removes the 4th item, which was originally the 5th item.
+	});
+
+var socket = io.connect(null);
+  socket.on('message', function (data) {
+	if(data == "sensor0")
+	{
+	   if (isPlayMode == true) {
+      AddNote(sensor_0);
+      }
+      else if (isPlayMode == false) {      
+       toggle(1);
+      myPlaylist.play();
+		}
+		}
+	if(data == "sensor1")
+	{ 
+	   if (isPlayMode == true) {
+      AddNote(snesor_1);
+      }
+      else if (isPlayMode == false) {
+
+		}
+		}
+	if(data == "sensor2")
+	{ 
+	    if (isPlayMode == true) {
+       AddNote(sensor_2);
+       }
+       else if (isPlayMode == false) {
+       myPlaylist.next();
+		myPlaylist.jp-stop();
+      }
+		}
+	if(data == "sensor3")
+	{ 
+	    if (isPlayMode == true) {
+        AddNote(sensor_3);
+        }
+        else if (isPlayMode == false) {
+	   myPlaylist.previous();
+		myPlaylist.jp-stop();
+       }
+		}
+  }
+  );
+
+});
+//]]>
+
+function toggle(started) {
+	var ele1 =  document.getElementById("div0");
+	var ele2 = document.getElementById("div1");
+	var ele3 = document.getElementById("div2");
+
+	if(started == 0) {
+	      isPlayMode = false;
+			ele1.style.display = "";
+   			ele2.style.display = "none";	
+			ele3.style.display = "none";
+  	}
+	else if (started == 1){
+	     isPlayMode = true;
+		ele1.style.display = "";
+		ele2.style.display = "";
+		ele3.style.display = "none";
+	}
+	else if (started == 2){
+		ele1.style.display = "none";
+		ele2.style.display = "none";
+		ele3.style.display = "";
+	}
+
+  }
+
+  
+  
+</script>
+</head>
+<body>
+	<center>
+			<div align="right">
+		<span id="settingStart" onclick="toggle(2)"><img src="setting2.jpg"/></span>
+		</div>
+	<table class="table_cotent">
+<tbody>
+<tr>
+<td>
+	<div id = "div0">
+
+		<div id="jp_container_N" class="jp-video jp-video-270p">
+			<div class="jp-type-playlist">
+				<div id="jquery_jplayer_N" class="jp-jplayer"></div>
+				<div class="jp-gui">
+					<div class="jp-video-play">
+						<a href="javascript:;" class="jp-video-play-icon" tabindex="1">play</a>
+					</div>
+					<div class="jp-interface">
+						<div class="jp-progress">
+							<div class="jp-seek-bar">
+								<div class="jp-play-bar"></div>
+							</div>
+						</div>
+						<div class="jp-current-time"></div>
+						<div class="jp-duration"></div>
+						<div class="jp-title">
+							<ul>
+								<li></li>
+							</ul>
+						</div>
+						<div class="jp-controls-holder">
+							<ul class="jp-controls">
+								<li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
+								<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+								<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+								<li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
+								<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+								<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+								<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+								<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+							</ul>
+							<div class="jp-volume-bar">
+								<div class="jp-volume-bar-value"></div>
+							</div>
+							<ul class="jp-toggles">
+								<li><a href="javascript:;" class="jp-full-screen" tabindex="1" title="full screen">full screen</a></li>
+								<li><a href="javascript:;" class="jp-restore-screen" tabindex="1" title="restore screen">restore screen</a></li>
+								<li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
+								<li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
+								<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+								<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="jp-playlist">
+					<ul>
+						<!-- The method Playlist.displayPlaylist() uses this unordered list -->
+						<li></li>
+					</ul>
+				</div>
+				<div class="jp-no-solution">
+					<span>Update Required</span>
+					To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+				</div>
+			</div>
+		</div>	
+		
+		<div id = "ControlPanel">
+				<br /> <br />
+				<code><span id="playlist-previous"><img src="prev1.png"/></span></code>
+				<span id="gameStart" onclick="toggle(1)"><img src="start3.png"/></span>
+				<code><span id="playlist-next" ><img src="next1.png"/></span></code>
+				<br />
+				
+				<p style="margin-top:1em;">
+				SetPlaylist: <code><a href="javascript:;" id="playlist-setPlaylist-video-mix">{Video}</a> </code> <br />
+				Add various videos: <code><a href="javascript:;" id="playlist-add-Bad-Romance">{Bad Romance}</a> | <a href="javascript:;" id="playlist-add-Poker-Face">{Poker Face}</a> </code><br />
+				Operation: <code><a href="javascript:;" id="fake-playlist-previous">previous</a>() | <code><a href="javascript:;" id="fake-playlist-next">next</a>()</code> |  <a href="javascript:;" id="playlist-play">play</a>() | <code><a href="javascript:;" id="playlist-pause">pause</a>()</code> |<code><a href="javascript:;" id="playlist-stop">stop</a>()</code><br />
+				
+		</div>	
+	</div>
+	</td>
+	<td>
+	<div id="div1" style="display:none"> 
+			hello play!
+			<button id="end1" onclick="toggle(0)">end</button>
+	<div id="div_buttons">
+      <a id="finger1" class="button orange glossy knife">Finger 1</a>
+      <br>
+      <a id="finger2" class="button blue glossy  knife">Finger 2</a>
+      <br>
+      <a id="pad1" class="button glossy green xl glass back">Pad 1</a>
+      <br>
+      <a id="pad2" class="button glossy pink xl glass back">Pad 2</a>
+    </div>
+			</div>
+			</td> 
+  </tr>
+	</tbody>
+	</table>
+	<div id="div2" style="display:none"> <br> 
+			Setting Interface!
+			<button id="end2" onclick="toggle(0)">OK</button>
+						
+  <div id="set">
+  
+  			<p>
+         <button id="submit">Submitted</button>				
+			</p>
+		
+		<div>
+         <div id="sensor1">1</div><br>
+         <div id="sensor2">2</div><br>
+         <div id="sensor3">3</div><br>
+         <div id="sensor4">4</div><br>		
+		</div>		
+  <div id="set-a">
+				<div id="set1">
+						<p>
+  					<label for="select1">Select for Sensor 1:</label>
+  					<form>
+						<select id="select1" onchange="set1_onChanged(this.options[this.options.selectedIndex].value)">
+						<option value="">choose tone for sensor1</option>
+						<option value="de">de</option>
+						<option value="shougu">shougu</option>
+						</select>
+						</form>
+						</p>
+				</div> 
+				<div id="set2">
+						<p>
+  					<label for="select2">Select for Sensor 2:</label>
+  					<form>
+						<select id="select2" onchange="set2_onChanged(this.options[this.options.selectedIndex].value)">
+						<option value="">choose tone for sensor2</option>
+						<option value="dong">dong</option>
+						<option value="xiaogu">xiaoguu</option>
+						</select>
+						</form>
+						</p>
+				</div>
+		</div>
+		<div id="set-b">
+				<div id="set3">
+						<p>
+  					<label for="select3">Select for Sensor 3:</label>
+  					<form>
+						<select id="select3" onchange="set3_onChanged(this.options[this.options.selectedIndex].value)">
+						<option value="">choose tone for sensor3</option>
+						<option value="de_P">de_P</option>
+						<option value="cha">cha</option>
+						</select>
+						</form>
+						</p>
+				</div>
+				<div id="set4">
+						<p>
+  					<label for="select4">Select for Sensor 4:</label>
+  					<form>
+						<select id="select4" onchange="set4_onChanged(this.options[this.options.selectedIndex].value)">
+						<option value="">choose tone for sensor4</option>
+						<option value="dong_P">dong_P</option>
+						<option value="bi">bi</option>
+						</select>
+						</form>
+						</p>
+				</div>
+		</div>
+</div>
+		
+</div>
+
+ 
+</center>
+
+
+<script type="text/javascript">
+ 
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+  <title>Project</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" href="http://bootswatch.com/spacelab/bootstrap.min.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+  $(function() {
+  		$( "button" ).button();
+    $( "#set" ).hide();
+    var isSet = false;
+    $( "#option" ).click(function() {					 
+					if(isSet == false){ 
+							$( "#set" ).show(); 
+							isSet = true; 
+					}
+					else { 
+							var s1 = $( "#select1" ).val();
+							var s2 = $( "#select2" ).val();
+							var s3 = $( "#select3" ).val();
+							var s4 = $( "#select4" ).val(); 
+							//alert( s1 );
+							$( "#set" ).hide(); 
+							isSet = false; 
+					}
+    });
+    
+});
+  </script>
+</head>
+<body>
+<header  id="overview">
+  <div class="row">
+    <div class="span6">
+      <h1>Dragonmama</h1>
+      <p class="lead">Rhythm on fingers.</p>
+    </div>
+    
+  </div>
+</header>
+
+				<p>
+  			<button id="option">Setting</button>
+				</p>	
+				
+  <div id="set">
+  
+  <div id="set-a">
+				<div id="set1">
+						<p>
+  					<label for="select1">Select for Sensor 1:</label>
+  					<form>
+						<select id="select1">
+						<option value="a1" selected="selected">a1</option>
+						<option value="a2">a2</option>
+						<option value="a3">a3</option>
+						<option value="a4">a4</option>
+						</select>
+						</form>
+						</p>
+				</div> 
+				<div id="set2">
+						<p>
+  					<label for="select2">Select for Sensor 2:</label>
+  					<form>
+						<select id="select2">
+						<option value="b1" selected="selected">b1</option>
+						<option value="b2">b2</option>
+						<option value="b3">b3</option>
+						<option value="b4">b4</option>
+						</select>
+						</form>
+						</p>
+				</div>
+		</div>
+		<div id="set-b">
+				<div id="set3">
+						<p>
+  					<label for="select3">Select for Sensor 3:</label>
+  					<form>
+						<select id="select3">
+						<option value="c1" selected="selected">c1</option>
+						<option value="c2">c2</option>
+						<option value="c3">c3</option>
+						<option value="c4">c4</option>
+						</select>
+						</form>
+						</p>
+				</div>
+				<div id="set4">
+						<p>
+  					<label for="select4">Select for Sensor 4:</label>
+  					<form>
+						<select id="select4">
+						<option value="d1" selected="selected">d1</option>
+						<option value="d2">d2</option>
+						<option value="d3">d3</option>
+						<option value="d4">d4</option>
+						</select>
+						</form>
+						</p>
+				</div>
+		</div>
+</div>
+
+
+
+</body>
+</html>
